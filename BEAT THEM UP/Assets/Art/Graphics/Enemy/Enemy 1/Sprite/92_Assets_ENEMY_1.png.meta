@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 8192
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -1018,7 +1018,7 @@ TextureImporter:
       92_Assets_ENEMY_1_7: 143476887
       92_Assets_ENEMY_1_13: 1333231528
       92_Assets_ENEMY_1_30: 1426397299
-      92_Assets_ENEMY_1_34: -517558559
+      92_Assets_ENEMY_1_37: -1803826815
       92_Assets_ENEMY_1_36: 801916166
       92_Assets_ENEMY_1_8: 1644381726
       92_Assets_ENEMY_1_0: -152780131
@@ -1037,9 +1037,9 @@ TextureImporter:
       92_Assets_ENEMY_1_25: -145907137
       92_Assets_ENEMY_1_1: -1130749245
       92_Assets_ENEMY_1_27: -1472814344
-      92_Assets_ENEMY_1_37: -1803826815
-      92_Assets_ENEMY_1_9: 1518284554
       92_Assets_ENEMY_1_39: 2028161562
+      92_Assets_ENEMY_1_23: 470889822
+      92_Assets_ENEMY_1_9: 1518284554
       92_Assets_ENEMY_1_19: 228952064
       92_Assets_ENEMY_1_15: -1694638499
       92_Assets_ENEMY_1_2: 1124615239
@@ -1051,7 +1051,7 @@ TextureImporter:
       92_Assets_ENEMY_1_32: 1976661243
       92_Assets_ENEMY_1_24: 2017146059
       92_Assets_ENEMY_1_21: 1517832667
-      92_Assets_ENEMY_1_23: 470889822
+      92_Assets_ENEMY_1_34: -517558559
       92_Assets_ENEMY_1_6: 354096911
   spritePackingTag: 
   pSDRemoveMatte: 0
