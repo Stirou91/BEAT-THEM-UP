@@ -44,10 +44,16 @@ public class PlayerSM : MonoBehaviour
     }
     private void GetInput()
     {
+
+        if (dirInput != Vector2.zero)
+        {
+            animator.SetFloat("DirX", dirInput.x);
+        }
         dirInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
+        animator.SetFloat("DirMagnitude", dirInput.magnitude);
         sprintInput = Input.GetButton("Sprint");
         animator.SetBool("SPRINT", sprintInput && dirInput.magnitude > 0);
+        animator.SetBool("WALK",dirInput.magnitude > 0);
     }
 
 
