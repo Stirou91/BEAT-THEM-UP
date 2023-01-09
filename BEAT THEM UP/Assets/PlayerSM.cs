@@ -5,11 +5,11 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject graphics;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
-    Rigidbody2D rb2D;
+     Rigidbody2D rb2D;
     [SerializeField] float jumpHeight = 10f;
-    [SerializeField] float walkSpeed = 5f;
-    [SerializeField] float sprintSpeed = 8f;
-
+    [SerializeField] float walkSpeed = 3f;
+    [SerializeField] float sprintSpeed = 5f;
+    [SerializeField] AnimationCurve jumpCurve;
     CapsuleCollider2D cc2D;
     float currentSpeed;
     bool attackTime;
@@ -26,11 +26,12 @@ public class PlayerSM : MonoBehaviour
         DEATH
 
     }
+    bool jumpInput;
     Vector2 dirInput;
     bool sprintInput;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+
     }
     // Start is called before the first frame update
     void Start()
@@ -59,11 +60,15 @@ public class PlayerSM : MonoBehaviour
         sprintInput = Input.GetButton("Sprint");
         animator.SetBool("SPRINT", sprintInput && dirInput.magnitude > 0);
         animator.SetBool("WALK", dirInput.magnitude > 0);
-        if(Input.GetButtonDown("Attack"))
+        if (Input.GetButtonDown("Jump"))
+        { 
+            animator.SetTrigger("JUMP");
+        }
+        if (Input.GetButtonDown("Attack"))
         {
             animator.SetTrigger("ATTACK");
         }
-       
+
     }
     void OnStateEnter()
     {
@@ -97,18 +102,20 @@ public class PlayerSM : MonoBehaviour
                     right = dirInput.x > 0;
                     graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
                 }
+                rb2D.velocity = Vector2.zero;
+                //rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
                 break;
             case PlayerState.WALK:
                 if (dirInput == Vector2.zero)
                 {
-                    TransitionToState (PlayerState.IDLE);
+                    TransitionToState(PlayerState.IDLE);
                 }
 
-                if(sprintInput)
+                if (sprintInput)
                 {
                     TransitionToState(PlayerState.SPRINT);
                 }
-
+                rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
                 break;
             case PlayerState.SPRINT:
 
@@ -116,11 +123,21 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.WALK);
                 }
-
+                rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
                 break;
             case PlayerState.JUMP:
+                if (jumpInput)
+                {
+                    TransitionToState(PlayerState.JUMP);
+                }
                 currentSpeed = jumpHeight;
-                animator.SetTrigger("JUMP");
+                if (jumpInput)
+                {
+                    RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, -transform.up, .1f);
+                    Vector2 rayOrigin = new Vector2(cc2D.bounds.center.x, cc2D.bounds.min.y);
+                    bool hit = Physics2D.Raycast(rayOrigin, -transform.up);
+
+                }
                 break;
             case PlayerState.ATTACK:
                 break;
@@ -156,6 +173,8 @@ public class PlayerSM : MonoBehaviour
         currentState = nextState;
         OnStateEnter();
     }
+
+
 
 }
 
