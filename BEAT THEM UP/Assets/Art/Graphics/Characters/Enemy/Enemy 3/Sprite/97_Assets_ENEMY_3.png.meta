@@ -1538,8 +1538,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       97_Assets_ENEMY_3_37: -911482431
-      97_Assets_ENEMY_3_55: -464162636
-      97_Assets_ENEMY_3_40: -628633521
+      97_Assets_ENEMY_3_17: 1465081871
+      97_Assets_ENEMY_3_14: -1500417475
       97_Assets_ENEMY_3_62: -895509844
       97_Assets_ENEMY_3_27: -581786454
       97_Assets_ENEMY_3_3: -205180589
@@ -1596,11 +1596,11 @@ TextureImporter:
       97_Assets_ENEMY_3_25: 1378649876
       97_Assets_ENEMY_3_20: 329114792
       97_Assets_ENEMY_3_11: -1512193970
+      97_Assets_ENEMY_3_40: -628633521
       97_Assets_ENEMY_3_23: 873456989
-      97_Assets_ENEMY_3_22: 2078201619
-      97_Assets_ENEMY_3_14: -1500417475
       97_Assets_ENEMY_3_58: 362140573
-      97_Assets_ENEMY_3_17: 1465081871
+      97_Assets_ENEMY_3_55: -464162636
+      97_Assets_ENEMY_3_22: 2078201619
       97_Assets_ENEMY_3_0: -961300773
       97_Assets_ENEMY_3_43: -336171428
   spritePackingTag: 
