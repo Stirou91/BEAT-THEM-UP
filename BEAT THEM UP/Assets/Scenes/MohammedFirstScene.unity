@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ee0d84b24b23f468b9a0717a8e97b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  graphics: {fileID: 1761460953}
   currentState: 0
   animator: {fileID: 1761460955}
   jumpHeight: 10

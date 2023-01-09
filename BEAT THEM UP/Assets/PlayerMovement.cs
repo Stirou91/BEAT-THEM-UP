@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     TransitionToState(PlayerState.SPRINT);
                 }
-                if (false)
+                if (true)
                 {
                     TransitionToState(PlayerState.WALK);
                 }
