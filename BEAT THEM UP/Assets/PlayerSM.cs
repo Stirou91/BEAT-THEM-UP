@@ -5,11 +5,13 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject graphics;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
-     Rigidbody2D rb2D;
+    Rigidbody2D rb2D;
     [SerializeField] float jumpHeight = 10f;
     [SerializeField] float walkSpeed = 3f;
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] AnimationCurve jumpCurve;
+    [SerializeField] float jumpDuration = 2f;
+    float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
     bool attackTime;
@@ -45,6 +47,9 @@ public class PlayerSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+
         GetInput();
         OnStateUpdate();
     }
@@ -52,24 +57,27 @@ public class PlayerSM : MonoBehaviour
     {
 
         dirInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        
+
         if (dirInput != Vector2.zero)
         {
+            // ROTATION GAUCHE DROITE
+            right = dirInput.x > 0;
+            graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
             animator.SetFloat("DirX", dirInput.x);
         }
+
+
         animator.SetFloat("DirMagnitude", dirInput.magnitude);
         sprintInput = Input.GetButton("Sprint");
         animator.SetBool("SPRINT", sprintInput && dirInput.magnitude > 0);
         animator.SetBool("WALK", dirInput.magnitude > 0);
-        if (Input.GetButtonDown("Jump"))
-        { 
-            animator.SetTrigger("JUMP");
-        }
-        if (Input.GetButtonDown("Attack"))
-        {
-            animator.SetTrigger("ATTACK");
-        }
-
+        
+        
     }
+
+
     void OnStateEnter()
     {
         switch (currentState)
@@ -81,8 +89,10 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.SPRINT:
                 break;
             case PlayerState.JUMP:
+                animator.SetTrigger("JUMP");
                 break;
             case PlayerState.ATTACK:
+                animator.SetTrigger("ATTACK");
                 break;
             case PlayerState.DEATH:
                 break;
@@ -96,48 +106,108 @@ public class PlayerSM : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.IDLE:
+
+                // STOP MOVEMENT
+                rb2D.velocity = Vector2.zero;
+
+                // TO WALK
                 if (dirInput != Vector2.zero)
                 {
                     TransitionToState(sprintInput ? PlayerState.SPRINT : PlayerState.WALK);
-                    right = dirInput.x > 0;
-                    graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
                 }
-                rb2D.velocity = Vector2.zero;
-                //rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
+
+                // TO ATTACK
+                if (Input.GetButtonDown("Attack"))
+                {
+                    
+                    TransitionToState(PlayerState.ATTACK);
+                }
+
+                // TO JUMP
+                if (Input.GetButtonDown("Jump"))
+                {
+                    TransitionToState(PlayerState.JUMP);
+                }
+
                 break;
             case PlayerState.WALK:
+
+                rb2D.velocity = dirInput.normalized * walkSpeed * 5f;
+
+                // TO IDLE
                 if (dirInput == Vector2.zero)
                 {
                     TransitionToState(PlayerState.IDLE);
                 }
 
+                // TO SPRINT
                 if (sprintInput)
                 {
                     TransitionToState(PlayerState.SPRINT);
                 }
-                rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
+
+                // TO ATTACK
+                if (Input.GetButtonDown("Attack"))
+                {
+
+                    TransitionToState(PlayerState.ATTACK);
+                }
+
+                // TO JUMP
+                if (Input.GetButtonDown("Jump"))
+                {
+                    TransitionToState(PlayerState.JUMP);
+                }
+
                 break;
             case PlayerState.SPRINT:
 
+                rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
+
+                // TO WALK
                 if (!sprintInput && dirInput != Vector2.zero)
                 {
                     TransitionToState(PlayerState.WALK);
                 }
-                rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
-                break;
-            case PlayerState.JUMP:
-                if (jumpInput)
+
+                // TO IDLE
+                if (dirInput == Vector2.zero)
+                {
+                    TransitionToState(PlayerState.IDLE);
+                }
+
+                // TO ATTACK
+                if (Input.GetButtonDown("Attack"))
+                {
+
+                    TransitionToState(PlayerState.ATTACK);
+                }
+
+                // TO JUMP
+                if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
                 }
-                currentSpeed = jumpHeight;
-                if (jumpInput)
-                {
-                    RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, -transform.up, .1f);
-                    Vector2 rayOrigin = new Vector2(cc2D.bounds.center.x, cc2D.bounds.min.y);
-                    bool hit = Physics2D.Raycast(rayOrigin, -transform.up);
 
+                break;
+            case PlayerState.JUMP:
+
+                rb2D.velocity = dirInput.normalized * walkSpeed * 5f;
+
+                if (jumpTimer < jumpDuration)
+                {
+                    jumpTimer += Time.deltaTime;
+
+                    float y = jumpCurve.Evaluate(jumpTimer / jumpDuration);
+
+                    graphics.transform.localPosition = new Vector3(0 , y * jumpHeight, 0);
                 }
+                else
+                {
+                    jumpTimer = 0f;
+                    TransitionToState(PlayerState.IDLE);
+                }
+
                 break;
             case PlayerState.ATTACK:
                 break;
