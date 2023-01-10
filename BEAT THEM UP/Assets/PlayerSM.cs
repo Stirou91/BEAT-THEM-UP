@@ -198,14 +198,24 @@ public class PlayerSM : MonoBehaviour
 
                 if (jumpTimer < jumpDuration)
                 {
+                    
+                    // SAUT
                     jumpTimer += Time.deltaTime;
 
                     float y = jumpCurve.Evaluate(jumpTimer / jumpDuration);
 
                     graphics.transform.localPosition = new Vector3(0 , y * jumpHeight, 0);
+
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        //TransitionToState(PlayerState.ATTACK);
+                        animator.SetTrigger("ATTACK");
+                    }
+                   
                 }
                 else
                 {
+                    // FIN DE SAUT
                     jumpTimer = 0f;
                     TransitionToState(PlayerState.IDLE);
                 }
