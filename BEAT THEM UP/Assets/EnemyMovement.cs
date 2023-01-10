@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
 
                 if(_PlayerDetected)
                 {
-                    TransitionToState(EnemyState.WALK).
+                    TransitionToState(EnemeState.WALK);
                 }
 
                 break;
@@ -76,7 +76,7 @@ public class EnemyMovement : MonoBehaviour
 
                 if (_PlayerDetected)
                 {
-                    TransitionToState(EnemyState.IDLE);
+                    TransitionToState(EnemeState.IDLE);
                 }
 
 
@@ -132,7 +132,7 @@ public class EnemyMovement : MonoBehaviour
         _PlayerDetected = false;
     }
 
-    private EnemyState _currentState;
+    private EnemeState _currentState;
     private bool _PlayerDetected = false;
 
 }
