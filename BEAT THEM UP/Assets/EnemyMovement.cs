@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     CapsuleCollider2D cc2D;
     float currentSpeed;
-
+    private bool _PlayerDetected = false; 
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -132,7 +132,7 @@ public class EnemyMovement : MonoBehaviour
         _PlayerDetected = false;
     }
 
-    private EnemeState _currentState;
-    private bool _PlayerDetected = false;
+    
+    
 
 }
