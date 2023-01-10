@@ -8,7 +8,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb2D;
     [SerializeField] EnemeState currentState;
-    bool playerDetected = false;
 
     CapsuleCollider2D cc2D;
     float currentSpeed;
@@ -67,16 +66,20 @@ public class EnemyMovement : MonoBehaviour
         {
             case EnemeState.IDLE:
 
-                if (playerDetected)
+                if(_PlayerDetected)
                 {
-                    TransitionToState(EnemeState.WALK);
+                    TransitionToState(EnemyState.WALK).
                 }
+
                 break;
             case EnemeState.WALK:
-                if (!playerDetected)
+
+                if (_PlayerDetected)
                 {
-                    TransitionToState(EnemeState.IDLE);
+                    TransitionToState(EnemyState.IDLE);
                 }
+
+
                 break;
             case EnemeState.ATTACK:
                 break;
@@ -120,8 +123,16 @@ public class EnemyMovement : MonoBehaviour
     void PlayerDetected()
 
     {
-        Debug.Log("j'ai détécté le joueur");
-        playerDetected = true;
+        _PlayerDetected = true;
+
     }
+
+    void PlayerEscaped()
+    {
+        _PlayerDetected = false;
+    }
+
+    private EnemyState _currentState;
+    private bool _PlayerDetected = false;
 
 }
