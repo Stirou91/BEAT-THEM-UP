@@ -14,7 +14,7 @@ public class PlayerSM : MonoBehaviour
     float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
-    bool attackTime;
+    float attackTime = 1f;
     bool right = true;
 
 
@@ -92,7 +92,9 @@ public class PlayerSM : MonoBehaviour
                 animator.SetTrigger("JUMP");
                 break;
             case PlayerState.ATTACK:
+                rb2D.velocity = Vector2.zero;
                 animator.SetTrigger("ATTACK");
+                attackTime = 1f;
                 break;
             case PlayerState.DEATH:
                 break;
@@ -210,6 +212,40 @@ public class PlayerSM : MonoBehaviour
 
                 break;
             case PlayerState.ATTACK:
+
+                attackTime -= Time.deltaTime;
+                if (attackTime <= 0)
+                {
+                    
+                    
+                }
+
+                // TO ATTACK
+                if (Input.GetButtonDown("Attack"))
+                {
+                    TransitionToState(PlayerState.ATTACK);
+                }
+               
+                // TO IDLE
+                if (dirInput == Vector2.zero)
+                {
+                    TransitionToState(PlayerState.IDLE);
+                }
+                // TO WALK
+                if (!sprintInput && dirInput != Vector2.zero)
+                {
+                    TransitionToState(PlayerState.WALK);
+                }
+                // TO SPRINT
+                if (sprintInput)
+                {
+                    TransitionToState(PlayerState.SPRINT);
+                }
+                // TO JUMP
+                if (Input.GetButtonDown("Jump"))
+                {
+                    TransitionToState(PlayerState.JUMP);
+                }
                 break;
             case PlayerState.DEATH:
             default:
