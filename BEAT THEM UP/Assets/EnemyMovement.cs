@@ -65,8 +65,21 @@ public class EnemyMovement : MonoBehaviour
         switch (currentState)
         {
             case EnemeState.IDLE:
+
+                if(_PlayerDetected)
+                {
+                    TransitionToState(EnemyState.WALK).
+                }
+
                 break;
             case EnemeState.WALK:
+
+                if (_PlayerDetected)
+                {
+                    TransitionToState(EnemyState.IDLE);
+                }
+
+
                 break;
             case EnemeState.ATTACK:
                 break;
@@ -110,8 +123,16 @@ public class EnemyMovement : MonoBehaviour
     void PlayerDetected()
 
     {
-        Debug.Log("j'ai détécté le joueur");
+        _PlayerDetected = true;
 
     }
+
+    void PlayerEscaped()
+    {
+        _PlayerDetected = false;
+    }
+
+    private EnemyState _currentState;
+    private bool _PlayerDetected = false;
 
 }
