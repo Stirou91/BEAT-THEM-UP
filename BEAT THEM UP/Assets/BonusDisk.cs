@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class BonusDisk : MonoBehaviour
 {
-    bool peuxRamasserCannette;
+    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            peuxRamasserCannette = true;
+            Destroy(gameObject);
         }
     }
 
@@ -17,7 +18,7 @@ public class BonusDisk : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            peuxRamasserCannette = false;
+            Destroy(gameObject);
         }
     }
 }
