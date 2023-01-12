@@ -63,9 +63,6 @@ public class PlayerSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         GetInput();
         OnStateUpdate();
     }
@@ -191,6 +188,7 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.SPRINT:
 
                 rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
+                
 
                 // TO WALK
                 if (!sprintInput && dirInput != Vector2.zero)
