@@ -65,6 +65,7 @@ public class EnemyMovement : MonoBehaviour
                 animator.SetTrigger("ATTACK");
                 break;
             case EnemeState.DEATH:
+                animator.SetTrigger("DEATH");
                 break;
             default:
                 break;
@@ -142,6 +143,7 @@ public class EnemyMovement : MonoBehaviour
                 animator.SetTrigger("ATTACK");
                 break;
             case EnemeState.DEATH:
+                animator.SetTrigger("DEATH");
                 break;
             default:
                 break;
