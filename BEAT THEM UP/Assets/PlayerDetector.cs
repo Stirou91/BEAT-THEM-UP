@@ -8,7 +8,7 @@ public class PlayerDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SendMessageUpwards("PlayerDetected");
+            SendMessageUpwards("PlayerDetected", collision.gameObject);
         }
     }
 
@@ -16,7 +16,7 @@ public class PlayerDetector : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            SendMessageUpwards("PlayerEscaped");
+            SendMessageUpwards("PlayerEscaped", collision.gameObject);
         }
     }
 }
