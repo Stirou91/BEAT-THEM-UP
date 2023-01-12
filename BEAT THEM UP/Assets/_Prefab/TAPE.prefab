@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3239025733278851005}
   - component: {fileID: 3201270386878156556}
   - component: {fileID: 1853628091593350864}
-  - component: {fileID: 306457748309060133}
+  - component: {fileID: 1350159173}
   m_Layer: 0
   m_Name: TAPE
   m_TagString: Untagged
@@ -112,15 +112,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.33024856}
   m_EdgeRadius: 0
---- !u!114 &306457748309060133
-MonoBehaviour:
+--- !u!95 &1350159173
+Animator:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7448989538766839674}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad4bf312ca8e2043ba36db0ec11c5fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 448f822aec6f2314880c45322971b3c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
