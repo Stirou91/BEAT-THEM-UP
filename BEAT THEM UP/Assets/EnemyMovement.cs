@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     CapsuleCollider2D cc2D;
     float currentSpeed;
-    private bool _PlayerDetected = false; 
+    private bool _PlayerDetected = false;
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -28,13 +28,13 @@ public class EnemyMovement : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         cc2D = GetComponent<CapsuleCollider2D>();
         currentState = EnemeState.IDLE;
-        OnStateEnter(); 
+        OnStateEnter();
     }
 
     // Update is called once per frame
     void Update()
     {
-     
+
 
         OnStateUpdate();
     }
@@ -66,7 +66,7 @@ public class EnemyMovement : MonoBehaviour
         {
             case EnemeState.IDLE:
 
-                if(_PlayerDetected)
+                if (_PlayerDetected)
                 {
                     TransitionToState(EnemeState.WALK);
                 }
@@ -74,7 +74,7 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemeState.WALK:
 
-                if (_PlayerDetected)
+                if (!_PlayerDetected)
                 {
                     TransitionToState(EnemeState.IDLE);
                 }
@@ -132,7 +132,7 @@ public class EnemyMovement : MonoBehaviour
         _PlayerDetected = false;
     }
 
-    
-    
+
+
 
 }
