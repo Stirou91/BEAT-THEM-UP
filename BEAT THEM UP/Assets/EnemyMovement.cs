@@ -85,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
                     TransitionToState(EnemeState.WALK);
                 }
                 // JE SUIS EN IDLE PRET DU JOUEUR
-                if (IsTargetNearLimit())
+                if (_PlayerDetected && IsTargetNearLimit())
                 {
                     attackTimer += Time.deltaTime;
                     if (attackTimer >= waitingTimeBeforeAttack)
