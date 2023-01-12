@@ -5,6 +5,7 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject graphics;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
+    [SerializeField] RuntimeAnimatorController animatorTwo;
     Rigidbody2D rb2D;
     [SerializeField] float jumpHeight = 10f;
     [SerializeField] float walkSpeed = 3f;
@@ -25,15 +26,30 @@ public class PlayerSM : MonoBehaviour
         JUMP,
         ATTACK,
         SPRINT,
+        CAN,
         DEATH
 
     }
     bool jumpInput;
     Vector2 dirInput;
     bool sprintInput;
+    bool canInput;
+
+    bool peuxRamasserCannette;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "CanUP")
+        {
+            peuxRamasserCannette = true;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "CanUP")
+        {
+            peuxRamasserCannette = false;
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -48,7 +64,7 @@ public class PlayerSM : MonoBehaviour
     void Update()
     {
 
-        
+
 
         GetInput();
         OnStateUpdate();
@@ -57,9 +73,9 @@ public class PlayerSM : MonoBehaviour
     {
 
         dirInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        
 
-        if (dirInput != Vector2.zero)
+
+        if (dirInput.x != 0)
         {
             // ROTATION GAUCHE DROITE
             right = dirInput.x > 0;
@@ -73,8 +89,14 @@ public class PlayerSM : MonoBehaviour
         sprintInput = Input.GetButton("Sprint");
         animator.SetBool("SPRINT", sprintInput && dirInput.magnitude > 0);
         animator.SetBool("WALK", dirInput.magnitude > 0);
+        canInput = Input.GetButtonDown("Can");
         
-        
+
+        if(peuxRamasserCannette && canInput) 
+        {
+            TransitionToState(PlayerState.CAN);
+        }
+
     }
 
 
@@ -90,6 +112,10 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.JUMP:
                 animator.SetTrigger("JUMP");
+                break;
+            case PlayerState.CAN:
+                rb2D.velocity = Vector2.zero;
+                animator.SetTrigger("CAN");
                 break;
             case PlayerState.ATTACK:
                 rb2D.velocity = Vector2.zero;
@@ -121,7 +147,7 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-                    
+
                     TransitionToState(PlayerState.ATTACK);
                 }
 
@@ -198,20 +224,20 @@ public class PlayerSM : MonoBehaviour
 
                 if (jumpTimer < jumpDuration)
                 {
-                    
+
                     // SAUT
                     jumpTimer += Time.deltaTime;
 
                     float y = jumpCurve.Evaluate(jumpTimer / jumpDuration);
 
-                    graphics.transform.localPosition = new Vector3(0 , y * jumpHeight, 0);
+                    graphics.transform.localPosition = new Vector3(0, y * jumpHeight, 0);
 
                     if (Input.GetButtonDown("Attack"))
                     {
                         //TransitionToState(PlayerState.ATTACK);
                         animator.SetTrigger("ATTACK");
                     }
-                   
+
                 }
                 else
                 {
@@ -219,15 +245,38 @@ public class PlayerSM : MonoBehaviour
                     jumpTimer = 0f;
                     TransitionToState(PlayerState.IDLE);
                 }
+                break;
+            case PlayerState.CAN:
+                // STOP MOVEMENT
+                rb2D.velocity = Vector2.zero;
 
+                // TO WALK
+                if (dirInput != Vector2.zero)
+                {
+                    TransitionToState(sprintInput ? PlayerState.SPRINT : PlayerState.WALK);
+                }
+
+                // TO ATTACK
+                if (Input.GetButtonDown("Attack"))
+                {
+
+                    TransitionToState(PlayerState.ATTACK);
+                }
+
+
+                // TO JUMP
+                if (Input.GetButtonDown("Jump"))
+                {
+                    TransitionToState(PlayerState.JUMP);
+                }
                 break;
             case PlayerState.ATTACK:
 
                 attackTime -= Time.deltaTime;
                 if (attackTime <= 0)
                 {
-                    
-                    
+
+
                 }
 
                 // TO ATTACK
@@ -235,7 +284,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.ATTACK);
                 }
-               
+
                 // TO IDLE
                 if (dirInput == Vector2.zero)
                 {
@@ -256,6 +305,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.JUMP);
                 }
+
                 break;
             case PlayerState.DEATH:
             default:
@@ -274,6 +324,8 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.SPRINT:
                 break;
             case PlayerState.JUMP:
+                break;
+            case PlayerState.CAN:
                 break;
             case PlayerState.ATTACK:
                 break;
