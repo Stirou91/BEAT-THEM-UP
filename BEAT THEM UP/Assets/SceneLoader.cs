@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
     public GameObject loadingscreen;
     public Slider slider;
 
-    public void LoadLevel (int sceneindexe);
+    //public void LoadLevel (int sceneindexe);
 
     public void ChargerLeJeu()
     {

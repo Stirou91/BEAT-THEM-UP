@@ -3,6 +3,17 @@ using UnityEngine;
 public class PlayerSM : MonoBehaviour
 {
     [SerializeField] GameObject graphics;
+    [SerializeField] GameObject dash;
+    [SerializeField] GameObject jump;
+    [SerializeField] GameObject shock;
+    [SerializeField] GameObject generalOne;
+    [SerializeField] GameObject generalTwo;
+    [SerializeField] GameObject hit;
+    [SerializeField] GameObject smoke;
+    [SerializeField] GameObject explosion;
+    [SerializeField] GameObject dustLand;
+    [SerializeField] GameObject groundPound;
+
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
     [SerializeField] RuntimeAnimatorController animatorTwo;
@@ -106,9 +117,11 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.WALK:
                 break;
             case PlayerState.SPRINT:
+                dash.gameObject.SetActive(true);
                 break;
             case PlayerState.JUMP:
                 animator.SetTrigger("JUMP");
+                jump.gameObject.SetActive(true);
                 break;
             case PlayerState.CAN:
                 rb2D.velocity = Vector2.zero;
@@ -152,6 +165,7 @@ public class PlayerSM : MonoBehaviour
                 if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
+                    jump.gameObject.SetActive(true);
                 }
 
                 break;
@@ -169,6 +183,7 @@ public class PlayerSM : MonoBehaviour
                 if (sprintInput)
                 {
                     TransitionToState(PlayerState.SPRINT);
+                    dash.gameObject.SetActive(true);
                 }
 
                 // TO ATTACK
@@ -182,18 +197,19 @@ public class PlayerSM : MonoBehaviour
                 if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
+                    jump.gameObject.SetActive(true);
                 }
 
                 break;
             case PlayerState.SPRINT:
 
                 rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
-                
-
+                dash.gameObject.SetActive(true);
                 // TO WALK
                 if (!sprintInput && dirInput != Vector2.zero)
                 {
                     TransitionToState(PlayerState.WALK);
+                    dash.gameObject.SetActive(false);
                 }
 
                 // TO IDLE
@@ -205,21 +221,22 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-
-                    TransitionToState(PlayerState.ATTACK);
+                   TransitionToState(PlayerState.ATTACK);
                 }
 
                 // TO JUMP
                 if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
+                    jump.gameObject.SetActive(true);
+                    dustLand.gameObject.SetActive(true);
                 }
 
                 break;
             case PlayerState.JUMP:
 
                 rb2D.velocity = dirInput.normalized * walkSpeed * 5f;
-
+                jump.gameObject.SetActive(true);
                 if (jumpTimer < jumpDuration)
                 {
 
@@ -241,6 +258,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     // FIN DE SAUT
                     jumpTimer = 0f;
+                    jump.gameObject.SetActive(false);
                     TransitionToState(PlayerState.IDLE);
                 }
                 break;
@@ -257,8 +275,7 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-
-                    TransitionToState(PlayerState.ATTACK);
+                  TransitionToState(PlayerState.ATTACK);
                 }
 
 
@@ -266,6 +283,7 @@ public class PlayerSM : MonoBehaviour
                 if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
+                    jump.gameObject.SetActive(true);
                 }
                 break;
             case PlayerState.ATTACK:
@@ -297,11 +315,14 @@ public class PlayerSM : MonoBehaviour
                 if (sprintInput)
                 {
                     TransitionToState(PlayerState.SPRINT);
+                    dash.gameObject.SetActive(true);
+                    shock.gameObject.SetActive(true);
                 }
                 // TO JUMP
                 if (Input.GetButtonDown("Jump"))
                 {
                     TransitionToState(PlayerState.JUMP);
+                    jump.gameObject.SetActive(true);
                 }
 
                 break;
@@ -320,8 +341,11 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.WALK:
                 break;
             case PlayerState.SPRINT:
+                dash.gameObject.SetActive(false);
+                shock.gameObject.SetActive(false);
                 break;
             case PlayerState.JUMP:
+                jump.gameObject.SetActive(false);
                 break;
             case PlayerState.CAN:
                 break;
