@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BonusDisk : MonoBehaviour
+public class BonusTape : MonoBehaviour
 {
-    
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Inventory.instance.AddCoints(200);
+            Inventory.instance.AddCoints(50);
             Destroy(gameObject);
         }
     }
