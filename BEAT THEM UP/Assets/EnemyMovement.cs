@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float waitingTimeBeforeAttack = 1f;
     [SerializeField] private float attackDuration = 0.2f;
     [SerializeField] private GameObject hitbox;
-
+    [SerializeField] GameObject graphics;
 
 
     CapsuleCollider2D cc2D;
@@ -20,7 +20,8 @@ public class EnemyMovement : MonoBehaviour
     private bool _PlayerDetected = false;
     private Transform moveTarget;
     private float attackTimer;
-
+    Vector2 dirInput;
+    bool right = true;
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -100,6 +101,13 @@ public class EnemyMovement : MonoBehaviour
             case EnemeState.WALK:
 
                 transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
+                if (dirInput.x != 0)
+                {
+                    // ROTATION GAUCHE DROITE
+                    right = dirInput.x > 0;
+                    graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+                                    
+                }
 
                 if (IsTargetNearLimit() )
                 {
