@@ -334,6 +334,8 @@ MonoBehaviour:
   hitbox: {fileID: 1487887190}
   graphics: {fileID: 1716165636069231004}
   currentHealth: 0
+  deathTimer: 3
+  disqPrefab: {fileID: 0}
 --- !u!114 &219890333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,3 +349,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  currentHealth: 0
