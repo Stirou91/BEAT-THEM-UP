@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
     {
 
         bonusCount += bonus;
-        textMeshProBonus.text = bonusCount.ToString("0000");
+        textMeshProBonus.text = bonusCount.ToString("00000");
 
     }
 }
