@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1487887192}
   - component: {fileID: 1487887191}
+  - component: {fileID: 870250873}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1487887192
 Transform:
   m_ObjectHideFlags: 0
@@ -58,6 +59,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.38}
   m_EdgeRadius: 0
+--- !u!114 &870250873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487887190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65c910ead8273c04b8d9b40c491e8ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &1767156219
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +250,7 @@ GameObject:
   - component: {fileID: 1716165636105162415}
   - component: {fileID: 1716165636105162414}
   - component: {fileID: 1311481085}
+  - component: {fileID: 219890333}
   m_Layer: 0
   m_Name: ENEMY_1
   m_TagString: Untagged
@@ -317,3 +332,18 @@ MonoBehaviour:
   waitingTimeBeforeAttack: 1
   attackDuration: 0.1
   hitbox: {fileID: 1487887190}
+  graphics: {fileID: 1716165636069231004}
+  currentHealth: 0
+--- !u!114 &219890333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716165636105162413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc593b7377a603458c22f6c5efef543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10

@@ -14,15 +14,19 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject hitbox;
     [SerializeField] GameObject graphics;
     [SerializeField] public float currentHealth;
+    [SerializeField] private float deathTimer = 3f;
+    [SerializeField] GameObject disqPrefab;
+
 
     CapsuleCollider2D cc2D;
     float limit;
     private bool _PlayerDetected = false;
     private Transform moveTarget;
     private float attackTimer;
-    private float damageTaken;
+    float damageTaken;
     Vector2 enemydir;
     bool right = true;
+    bool death = true;
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -151,6 +155,14 @@ public class EnemyMovement : MonoBehaviour
                 }
                 break;
             case EnemeState.DEATH:
+                
+                if (death)
+                {
+                    Destroy(gameObject, deathTimer);
+                  
+                }
+                
+
                 break;
             default:
                 break;
