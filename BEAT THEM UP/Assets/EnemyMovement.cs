@@ -50,22 +50,8 @@ public class EnemyMovement : MonoBehaviour
 
         OnStateUpdate();
     }
-    private void OnTriggerEnter2D(Collision collision)
-    {
-
-        if (collision.gameObject.tag == "Player")
-        {
-
-            collision.gameObject.GetComponent<PlayerHealth>().currentHealth -= 3f;
-            Destroy(collision.gameObject);
-
-        }
-
-    }
-    private void TakeDamage()
-    {
-        currentHealth -= damageTaken;    
-    }
+   
+   
     private void Rotation()
     {
 
@@ -225,5 +211,8 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-
+    public void EnemyDead()
+    {
+        TransitionToState(EnemeState.DEATH);
+    }
 }

@@ -13,14 +13,13 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float damageAmount)
     {
+        currentHealth -= damageAmount;
+
         if (currentHealth <= 0)
         {
-
-
-            Destroy(gameObject);
+            GetComponent<EnemyMovement>().EnemyDead();
         }
     }
 }
