@@ -13,7 +13,7 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject explosion;
     [SerializeField] GameObject dustLand;
     [SerializeField] GameObject groundPound;
-
+    [SerializeField] GameObject EnemyHealth;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
     [SerializeField] RuntimeAnimatorController animatorTwo;
@@ -26,9 +26,9 @@ public class PlayerSM : MonoBehaviour
     float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
-    float attackTime = 1f;
+    float attackTime = 3f;
     bool right = true;
-
+    
 
     public enum PlayerState
     {
@@ -106,8 +106,7 @@ public class PlayerSM : MonoBehaviour
         }
 
     }
-
-
+   
     void OnStateEnter()
     {
         switch (currentState)
@@ -366,6 +365,10 @@ public class PlayerSM : MonoBehaviour
         OnStateEnter();
     }
 
+    public void PlayerDead()
+    {
+        TransitionToState(PlayerState.DEATH);
+    }
 
 
 }
