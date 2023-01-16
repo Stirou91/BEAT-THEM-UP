@@ -13,14 +13,15 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float attackDuration = 0.2f;
     [SerializeField] private GameObject hitbox;
     [SerializeField] GameObject graphics;
-
+    [SerializeField] public float currentHealth;
 
     CapsuleCollider2D cc2D;
     float limit;
     private bool _PlayerDetected = false;
     private Transform moveTarget;
     private float attackTimer;
-    Vector2 dirInput;
+    private float damageTaken;
+    Vector2 enemydir;
     bool right = true;
     // Start is called before the first frame update
 
@@ -45,9 +46,49 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Rotation();
 
         OnStateUpdate();
+    }
+    private void OnTriggerEnter2D(Collision collision)
+    {
+
+        if (collision.gameObject.tag == "Player")
+        {
+
+            collision.gameObject.GetComponent<PlayerHealth>().currentHealth -= 3f;
+            Destroy(collision.gameObject);
+
+        }
+
+    }
+    private void TakeDamage()
+    {
+        currentHealth -= damageTaken;    
+    }
+    private void Rotation()
+    {
+
+        enemydir = moveTarget.position - transform.position;
+
+        if (enemydir.x < 0)
+        {
+            right = false;
+        }
+
+        if (enemydir.x > 0)
+        {
+            right = true;
+        }
+
+        if (right)
+        {
+            graphics.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            graphics.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     void OnStateEnter()
@@ -101,13 +142,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemeState.WALK:
 
                 transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
-                if (dirInput.x != 0)
-                {
-                    // ROTATION GAUCHE DROITE
-                    right = dirInput.x > 0;
-                    graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
-                                    
-                }
+                
 
                 if (IsTargetNearLimit() )
                 {
