@@ -205,6 +205,8 @@ public class PlayerSM : MonoBehaviour
 
                 rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
                 dash.gameObject.SetActive(true);
+
+
                 // TO WALK
                 if (!sprintInput && dirInput != Vector2.zero)
                 {
@@ -229,7 +231,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.JUMP);
                     jump.gameObject.SetActive(true);
-                    dustLand.gameObject.SetActive(true);
+                    
                 }
 
                 break;
@@ -342,7 +344,7 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.SPRINT:
                 dash.gameObject.SetActive(false);
-                shock.gameObject.SetActive(false);
+                //shock.gameObject.SetActive(false);
                 break;
             case PlayerState.JUMP:
                 jump.gameObject.SetActive(false);
