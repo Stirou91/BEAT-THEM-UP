@@ -58,6 +58,12 @@ public class EnemyMovement : MonoBehaviour
    
     private void Rotation()
     {
+        if (moveTarget == null)
+        {
+            return;
+
+        }
+
 
         enemydir = moveTarget.position - transform.position;
 

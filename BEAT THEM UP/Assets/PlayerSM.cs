@@ -135,7 +135,7 @@ public class PlayerSM : MonoBehaviour
                 animator.SetTrigger("ATTACK");
 
                 Collider2D[] enemies = new Collider2D[3];
-                Physics2D.OverlapCircleNonAlloc(transform.position, detectionRadius, enemies , detectionLayer);
+                Physics2D.OverlapCircleNonAlloc(Punch.transform.position, detectionRadius, enemies , detectionLayer);
 
                 bool hit = false;
                 for (int i = 0; i < enemies.Length; i++)
@@ -155,6 +155,7 @@ public class PlayerSM : MonoBehaviour
 
                 break;
             case PlayerState.DEATH:
+                animator.SetTrigger("DEATH");
                 break;
             default:
                 break;
