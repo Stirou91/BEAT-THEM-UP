@@ -8,12 +8,13 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject shock;
     [SerializeField] GameObject generalOne;
     [SerializeField] GameObject generalTwo;
-    [SerializeField] GameObject hit;
+    [SerializeField] GameObject Punch;
+    [SerializeField] GameObject hitPrefab;
     [SerializeField] GameObject smoke;
     [SerializeField] GameObject explosion;
     [SerializeField] GameObject dustLand;
     [SerializeField] GameObject groundPound;
-
+    [SerializeField] GameObject EnemyHealth;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
     [SerializeField] RuntimeAnimatorController animatorTwo;
@@ -23,12 +24,14 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] AnimationCurve jumpCurve;
     [SerializeField] float jumpDuration = 2f;
+    [SerializeField] float detectionRadius = 1f;
+    [SerializeField] LayerMask detectionLayer;
     float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
-    float attackTime = 1f;
+    float attackTime = .25f;
     bool right = true;
-
+    
 
     public enum PlayerState
     {
@@ -36,6 +39,7 @@ public class PlayerSM : MonoBehaviour
         WALK,
         JUMP,
         ATTACK,
+        HIT,
         SPRINT,
         CAN,
         DEATH
@@ -106,8 +110,7 @@ public class PlayerSM : MonoBehaviour
         }
 
     }
-
-
+   
     void OnStateEnter()
     {
         switch (currentState)
@@ -130,9 +133,29 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.ATTACK:
                 rb2D.velocity = Vector2.zero;
                 animator.SetTrigger("ATTACK");
-                attackTime = 1f;
+
+                Collider2D[] enemies = new Collider2D[3];
+                Physics2D.OverlapCircleNonAlloc(Punch.transform.position, detectionRadius, enemies , detectionLayer);
+
+                bool hit = false;
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    if(enemies[i] != null)
+                    {
+                        hit = true;
+                        enemies[i].GetComponent<EnemyHealth>().TakeDamage(10f);
+                    }
+                }
+
+                if(hit)
+                {
+                    GameObject go = Instantiate(hitPrefab, Punch.transform.position, Punch.transform.rotation);
+                    Destroy(go, 3f);
+                }
+
                 break;
             case PlayerState.DEATH:
+                animator.SetTrigger("DEATH");
                 break;
             default:
                 break;
@@ -157,8 +180,8 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
+                  TransitionToState(PlayerState.ATTACK);
 
-                    TransitionToState(PlayerState.ATTACK);
                 }
 
                 // TO JUMP
@@ -189,8 +212,8 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
+                   TransitionToState(PlayerState.ATTACK);
 
-                    TransitionToState(PlayerState.ATTACK);
                 }
 
                 // TO JUMP
@@ -205,6 +228,8 @@ public class PlayerSM : MonoBehaviour
 
                 rb2D.velocity = dirInput.normalized * sprintSpeed * 5f;
                 dash.gameObject.SetActive(true);
+
+
                 // TO WALK
                 if (!sprintInput && dirInput != Vector2.zero)
                 {
@@ -229,7 +254,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.JUMP);
                     jump.gameObject.SetActive(true);
-                    dustLand.gameObject.SetActive(true);
+                    
                 }
 
                 break;
@@ -289,10 +314,9 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.ATTACK:
 
                 attackTime -= Time.deltaTime;
-                if (attackTime <= 0)
+                if (attackTime > 0)
                 {
-
-
+                    return;
                 }
 
                 // TO ATTACK
@@ -316,7 +340,6 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.SPRINT);
                     dash.gameObject.SetActive(true);
-                    shock.gameObject.SetActive(true);
                 }
                 // TO JUMP
                 if (Input.GetButtonDown("Jump"))
@@ -342,7 +365,7 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.SPRINT:
                 dash.gameObject.SetActive(false);
-                shock.gameObject.SetActive(false);
+                //shock.gameObject.SetActive(false);
                 break;
             case PlayerState.JUMP:
                 jump.gameObject.SetActive(false);
@@ -350,6 +373,7 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.CAN:
                 break;
             case PlayerState.ATTACK:
+                attackTime = .25f;
                 break;
             case PlayerState.DEATH:
             default:
@@ -364,6 +388,10 @@ public class PlayerSM : MonoBehaviour
         OnStateEnter();
     }
 
+    public void PlayerDead()
+    {
+        TransitionToState(PlayerState.DEATH);
+    }
 
 
 }

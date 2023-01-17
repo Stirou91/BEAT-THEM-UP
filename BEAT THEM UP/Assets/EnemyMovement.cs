@@ -13,6 +13,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float attackDuration = 0.2f;
     [SerializeField] private GameObject hitbox;
     [SerializeField] GameObject graphics;
+    [SerializeField] public float currentHealth;
+    [SerializeField] private float deathTimer = 3f;
+    [SerializeField] GameObject disqPrefab;
 
 
     CapsuleCollider2D cc2D;
@@ -20,8 +23,10 @@ public class EnemyMovement : MonoBehaviour
     private bool _PlayerDetected = false;
     private Transform moveTarget;
     private float attackTimer;
-    Vector2 dirInput;
+    float damageTaken;
+    Vector2 enemydir;
     bool right = true;
+    bool death = true;
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -45,9 +50,41 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Rotation();
 
         OnStateUpdate();
+    }
+   
+   
+    private void Rotation()
+    {
+        if (moveTarget == null)
+        {
+            return;
+
+        }
+
+
+        enemydir = moveTarget.position - transform.position;
+
+        if (enemydir.x < 0)
+        {
+            right = false;
+        }
+
+        if (enemydir.x > 0)
+        {
+            right = true;
+        }
+
+        if (right)
+        {
+            graphics.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            graphics.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     void OnStateEnter()
@@ -100,14 +137,10 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemeState.WALK:
 
-                transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
-                if (dirInput.x != 0)
-                {
-                    // ROTATION GAUCHE DROITE
-                    right = dirInput.x > 0;
-                    graphics.transform.rotation = right ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
-                                    
-                }
+
+                rb2D.velocity = enemydir.normalized * 1;
+                //transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
+                
 
                 if (IsTargetNearLimit() )
                 {
@@ -130,6 +163,14 @@ public class EnemyMovement : MonoBehaviour
                 }
                 break;
             case EnemeState.DEATH:
+                
+                if (death)
+                {
+                    Destroy(gameObject, deathTimer);
+                  
+                }
+                
+
                 break;
             default:
                 break;
@@ -144,6 +185,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemeState.IDLE:
                 break;
             case EnemeState.WALK:
+                rb2D.velocity = Vector2.zero;
                 animator.SetBool("WALK", false);
                 break;
             case EnemeState.ATTACK:
@@ -190,5 +232,8 @@ public class EnemyMovement : MonoBehaviour
     }
 
 
-
+    public void EnemyDead()
+    {
+        TransitionToState(EnemeState.DEATH);
+    }
 }

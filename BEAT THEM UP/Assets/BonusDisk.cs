@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class BonusDisk : MonoBehaviour
 {
-    
+    public AudioSource audioSource;
+    public AudioClip sound;
+    public int points = 200;
+    public float time = 0.5f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Inventory.instance.AddCoints(200);
-            Destroy(gameObject);
+            //AudioSource.PlayClipAtPoint(sound, transform.position);
+            audioSource.Play();
+            Inventory.instance.AddCoints(points);
+            Destroy(gameObject, time);
         }
     }
 

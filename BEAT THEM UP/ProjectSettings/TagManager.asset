@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - CanUP
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - Camera
-  - 
+  - player
   - 
   - 
   - 
