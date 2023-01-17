@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerSM : MonoBehaviour
@@ -26,12 +28,17 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] float jumpDuration = 2f;
     [SerializeField] float detectionRadius = 1f;
     [SerializeField] LayerMask detectionLayer;
+    [SerializeField] Color currentColors;
+
+    [SerializeField] AnimationCurve hurtCurve;
+    SpriteRenderer sr;
+    bool isHurt;
     float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
     float attackTime = .25f;
     bool right = true;
-    
+
 
     public enum PlayerState
     {
@@ -42,6 +49,7 @@ public class PlayerSM : MonoBehaviour
         HIT,
         SPRINT,
         CAN,
+        HURT,
         DEATH
 
     }
@@ -71,6 +79,7 @@ public class PlayerSM : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         cc2D = GetComponent<CapsuleCollider2D>();
+        sr = graphics.GetComponent<SpriteRenderer>();
         currentState = PlayerState.IDLE;
         OnStateEnter();
     }
@@ -78,6 +87,14 @@ public class PlayerSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // TO HURT
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            TransitionToState(PlayerState.HURT);
+
+        }
+
         GetInput();
         OnStateUpdate();
     }
@@ -102,15 +119,15 @@ public class PlayerSM : MonoBehaviour
         animator.SetBool("SPRINT", sprintInput && dirInput.magnitude > 0);
         animator.SetBool("WALK", dirInput.magnitude > 0);
         canInput = Input.GetButtonDown("Can");
-        
 
-        if(peuxRamasserCannette && canInput) 
+
+        if (peuxRamasserCannette && canInput)
         {
             TransitionToState(PlayerState.CAN);
         }
 
     }
-   
+
     void OnStateEnter()
     {
         switch (currentState)
@@ -136,22 +153,31 @@ public class PlayerSM : MonoBehaviour
                 animator.SetTrigger("ATTACK");
 
                 Collider2D[] enemies = new Collider2D[3];
-                Physics2D.OverlapCircleNonAlloc(Punch.transform.position, detectionRadius, enemies , detectionLayer);
+                Physics2D.OverlapCircleNonAlloc(Punch.transform.position, detectionRadius, enemies, detectionLayer);
 
                 bool hit = false;
                 for (int i = 0; i < enemies.Length; i++)
                 {
-                    if(enemies[i] != null)
+                    if (enemies[i] != null)
                     {
                         hit = true;
                         enemies[i].GetComponent<EnemyHealth>().TakeDamage(10f);
                     }
                 }
 
-                if(hit)
+                if (hit)
                 {
                     GameObject go = Instantiate(hitPrefab, Punch.transform.position, Punch.transform.rotation);
                     Destroy(go, 3f);
+                }
+
+                break;
+            case PlayerState.HURT:
+
+                if (!isHurt)
+                {
+                    isHurt = true;
+                    StartCoroutine(HurtColor());
                 }
 
                 break;
@@ -181,9 +207,11 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-                  TransitionToState(PlayerState.ATTACK);
+                    TransitionToState(PlayerState.ATTACK);
 
                 }
+
+
 
                 // TO JUMP
                 if (Input.GetButtonDown("Jump"))
@@ -213,7 +241,7 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-                   TransitionToState(PlayerState.ATTACK);
+                    TransitionToState(PlayerState.ATTACK);
 
                 }
 
@@ -247,7 +275,7 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-                   TransitionToState(PlayerState.ATTACK);
+                    TransitionToState(PlayerState.ATTACK);
                 }
 
                 // TO JUMP
@@ -255,7 +283,7 @@ public class PlayerSM : MonoBehaviour
                 {
                     TransitionToState(PlayerState.JUMP);
                     jump.gameObject.SetActive(true);
-                    
+
                 }
 
                 break;
@@ -301,7 +329,7 @@ public class PlayerSM : MonoBehaviour
                 // TO ATTACK
                 if (Input.GetButtonDown("Attack"))
                 {
-                  TransitionToState(PlayerState.ATTACK);
+                    TransitionToState(PlayerState.ATTACK);
                 }
 
 
@@ -395,6 +423,25 @@ public class PlayerSM : MonoBehaviour
         TransitionToState(PlayerState.DEATH);
     }
 
+    IEnumerator HurtColor()
+    {
+        float t = 0;
+        float duration = .3f;
+
+        Color startColor = sr.color;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+
+            sr.color = Color.Lerp(startColor, Color.red, hurtCurve.Evaluate(t / duration));
+
+            yield return null;
+        }
+
+        isHurt = false;
+
+    }
 
 }
 
