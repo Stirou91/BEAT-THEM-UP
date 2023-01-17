@@ -137,7 +137,9 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemeState.WALK:
 
-                transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
+
+                rb2D.velocity = enemydir.normalized * 1;
+                //transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
                 
 
                 if (IsTargetNearLimit() )
@@ -183,6 +185,7 @@ public class EnemyMovement : MonoBehaviour
             case EnemeState.IDLE:
                 break;
             case EnemeState.WALK:
+                rb2D.velocity = Vector2.zero;
                 animator.SetBool("WALK", false);
                 break;
             case EnemeState.ATTACK:
