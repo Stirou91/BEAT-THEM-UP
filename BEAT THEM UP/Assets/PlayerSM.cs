@@ -125,6 +125,7 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.JUMP:
                 animator.SetTrigger("JUMP");
                 jump.gameObject.SetActive(true);
+                dustLand.gameObject.SetActive(false);
                 break;
             case PlayerState.CAN:
                 rb2D.velocity = Vector2.zero;
@@ -369,6 +370,7 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.JUMP:
                 jump.gameObject.SetActive(false);
+                dustLand.gameObject.SetActive(true);
                 break;
             case PlayerState.CAN:
                 break;
