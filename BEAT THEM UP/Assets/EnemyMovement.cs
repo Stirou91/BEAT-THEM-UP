@@ -141,15 +141,16 @@ public class EnemyMovement : MonoBehaviour
                 rb2D.velocity = enemydir.normalized * 1;
                 //transform.position = Vector2.MoveTowards(transform.position, moveTarget.position, Time.deltaTime);
                 
-
-                if (IsTargetNearLimit() )
-                {
-                    TransitionToState(EnemeState.IDLE);
-                }
-
                 if (!_PlayerDetected)
                 {
                     TransitionToState(EnemeState.IDLE);
+                    return;
+                }
+
+
+                if (IsTargetNearLimit() )
+                {
+                    TransitionToState(EnemeState.ATTACK);
                 }
 
 

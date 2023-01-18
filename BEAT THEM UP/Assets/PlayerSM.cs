@@ -89,15 +89,12 @@ public class PlayerSM : MonoBehaviour
     void Update()
     {
 
-        // TO HURT
-        if (isHurt)
+        
+        if(currentState != PlayerState.DEATH)
         {
-           isHurt = true;
-           Hurt.gameObject.SetActive(true);
-           TransitionToState(PlayerState.HURT);
-        }
+            GetInput();
 
-        GetInput();
+        }
         OnStateUpdate();
     }
     private void GetInput()
@@ -176,7 +173,7 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.HURT:
                 animator.SetTrigger("HURT");
-                
+                rb2D.velocity = Vector2.zero;
                 if (!isHurt)
                 {
                     isHurt = true;
@@ -186,6 +183,8 @@ public class PlayerSM : MonoBehaviour
                 break;
             case PlayerState.DEATH:
                 animator.SetTrigger("DEATH");
+                rb2D.velocity = Vector2.zero;
+                cc2D.enabled = false;
                 break;
             default:
                 break;
@@ -426,6 +425,11 @@ public class PlayerSM : MonoBehaviour
         TransitionToState(PlayerState.DEATH);
     }
 
+    public void PlayerHurt()
+    {
+        TransitionToState(PlayerState.HURT);
+    }
+
     IEnumerator HurtColor()
     {
         float t = 0;
@@ -437,12 +441,14 @@ public class PlayerSM : MonoBehaviour
         {
             t += Time.deltaTime;
 
-            sr.color = Color.Lerp(startColor, Color.red, hurtCurve.Evaluate(t / duration));
+            //sr.color = Color.Lerp(startColor, Color.red, hurtCurve.Evaluate(t / duration));
 
             yield return null;
         }
 
         isHurt = false;
+
+        TransitionToState(PlayerState.IDLE);
 
     }
 

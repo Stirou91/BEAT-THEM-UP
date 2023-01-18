@@ -195,6 +195,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7895306331169137996, guid: ad6c84ec3c5d8ef4f90cf4aea4b7f537, type: 3}
   m_PrefabInstance: {fileID: 6422016146499575545}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &721252769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8217833258829432922, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
+  m_PrefabInstance: {fileID: 1077302378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &731594561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1687557432063068884, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
@@ -222,6 +227,14 @@ PrefabInstance:
     - target: {fileID: 7339337159729733025, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339337159956437514, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
+      propertyPath: attackDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339337159956437514, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
+      propertyPath: limitNearTarget
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8217833258789834603, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
       propertyPath: m_Layer
@@ -550,6 +563,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5534672185295633184, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: Hurt
+      value: 
+      objectReference: {fileID: 721252769}
+    - target: {fileID: 5534672185295633184, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
       propertyPath: jump
       value: 
       objectReference: {fileID: 648976580}
@@ -569,6 +586,10 @@ PrefabInstance:
       propertyPath: hitPrefab
       value: 
       objectReference: {fileID: 2765398824849909370, guid: 0aeaf448fffe8c54b8f1f079e50a012c, type: 3}
+    - target: {fileID: 5534672185295633184, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: EnemyHealth
+      value: 
+      objectReference: {fileID: 721252769}
     - target: {fileID: 5534672185295633184, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
       propertyPath: groundPound
       value: 
