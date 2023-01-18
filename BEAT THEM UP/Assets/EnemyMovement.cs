@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject graphics;
     [SerializeField] public float currentHealth;
     [SerializeField] private float deathTimer = 3f;
-    [SerializeField] GameObject disqPrefab;
+    [SerializeField] GameObject diskPrefab;
 
 
     CapsuleCollider2D cc2D;
@@ -167,7 +167,7 @@ public class EnemyMovement : MonoBehaviour
                 if (death)
                 {
                     Destroy(gameObject, deathTimer);
-                  
+                    GameObject diskPrefabgo = Instantiate(diskPrefab, transform.position, transform.rotation);
                 }
                 
 
