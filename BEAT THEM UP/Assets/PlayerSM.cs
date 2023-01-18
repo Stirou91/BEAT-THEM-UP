@@ -31,6 +31,8 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] float detectionRadius = 1f;
     [SerializeField] LayerMask detectionLayer;
     [SerializeField] Color currentColors;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip sound;
 
     [SerializeField] AnimationCurve hurtCurve;
     SpriteRenderer sr;
@@ -132,6 +134,7 @@ public class PlayerSM : MonoBehaviour
         switch (currentState)
         {
             case PlayerState.IDLE:
+                
                 break;
             case PlayerState.WALK:
                 break;
@@ -142,6 +145,11 @@ public class PlayerSM : MonoBehaviour
                 animator.SetTrigger("JUMP");
                 jump.gameObject.SetActive(true);
                 dustLand.gameObject.SetActive(false);
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+
+                }
                 break;
             case PlayerState.CAN:
                 rb2D.velocity = Vector2.zero;
@@ -150,7 +158,12 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.ATTACK:
                 rb2D.velocity = Vector2.zero;
                 animator.SetTrigger("ATTACK");
+                if(!audioSource.isPlaying)
+                {
+                    audioSource.Play();
 
+                }
+               
                 Collider2D[] enemies = new Collider2D[3];
                 Physics2D.OverlapCircleNonAlloc(Punch.transform.position, detectionRadius, enemies, detectionLayer);
 

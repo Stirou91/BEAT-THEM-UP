@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 8112544606135565022}
   - component: {fileID: 8112544606135565017}
   - component: {fileID: 8112544606135565016}
-  - component: {fileID: 6228252195676312227}
   m_Layer: 0
   m_Name: CANS_RED
-  m_TagString: Untagged
+  m_TagString: CanUP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,15 +111,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45573473, y: 0.29450643}
   m_EdgeRadius: 0
---- !u!114 &6228252195676312227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8112544606135565019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad4bf312ca8e2043ba36db0ec11c5fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
