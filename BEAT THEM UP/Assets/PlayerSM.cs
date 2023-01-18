@@ -18,6 +18,7 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] GameObject dustLand;
     [SerializeField] GameObject groundPound;
     [SerializeField] GameObject EnemyHealth;
+    [SerializeField] GameObject Hurt;
     [SerializeField] PlayerState currentState;
     [SerializeField] Animator animator;
     [SerializeField] RuntimeAnimatorController animatorTwo;
@@ -33,13 +34,12 @@ public class PlayerSM : MonoBehaviour
 
     [SerializeField] AnimationCurve hurtCurve;
     SpriteRenderer sr;
-    bool isHurt;
     float jumpTimer;
     CapsuleCollider2D cc2D;
     float currentSpeed;
     float attackTime = .25f;
     bool right = true;
-
+    bool isHurt;
 
     public enum PlayerState
     {
@@ -90,10 +90,11 @@ public class PlayerSM : MonoBehaviour
     {
 
         // TO HURT
-        if (Input.GetKeyDown(KeyCode.K))
+        if (isHurt)
         {
-            TransitionToState(PlayerState.HURT);
-
+           isHurt = true;
+           Hurt.gameObject.SetActive(true);
+           TransitionToState(PlayerState.HURT);
         }
 
         GetInput();
@@ -174,7 +175,8 @@ public class PlayerSM : MonoBehaviour
 
                 break;
             case PlayerState.HURT:
-
+                animator.SetTrigger("HURT");
+                
                 if (!isHurt)
                 {
                     isHurt = true;
