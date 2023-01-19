@@ -33,6 +33,7 @@ public class PlayerSM : MonoBehaviour
     [SerializeField] Color currentColors;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip sound;
+    [SerializeField] AudioConfig AudioConfig;
 
     [SerializeField] AnimationCurve hurtCurve;
     SpriteRenderer sr;
@@ -135,6 +136,17 @@ public class PlayerSM : MonoBehaviour
         {
             case PlayerState.IDLE:
                 
+                animator.SetTrigger("SPECIAL");
+                if (shock.gameObject)
+                {
+                    shock.gameObject.SetActive(true);
+                }
+                else 
+                {
+                    shock.gameObject.SetActive(false);
+                    TransitionToState(PlayerState.IDLE);
+                }
+               
                 break;
             case PlayerState.WALK:
                 break;
@@ -408,8 +420,6 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.WALK:
                 break;
             case PlayerState.SPRINT:
-                dash.gameObject.SetActive(false);
-                //shock.gameObject.SetActive(false);
                 break;
             case PlayerState.JUMP:
                 jump.gameObject.SetActive(false);
