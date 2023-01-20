@@ -14,22 +14,51 @@ public class AudioConfig : ScriptableObject
 
     public void PlayGameSong(AudioListener AudioSource, bool ReloadSongs = false)
     {
+        if (true)
+        {
+
+        }
+        else
+        {
+
+        }
 
     }
 
     public void PlayerGameSong(AudioListener AudioSource, bool PlayerSong = false)
     {
+        if (true)
+        {
 
+        }
+        else
+        {
+
+        }
     }
 
     public void EnemiGameSong(AudioListener AudioSource, bool EnemiesSong = false)
     {
+        if (true)
+        {
 
+        }
+        else
+        {
+
+        }
     }
 
     public void RealoadGameSong(AudioListener AudioSource, bool ReloadSong = false)
     {
+        if (true)
+        {
 
+        }
+        else
+        {
+
+        }
     }
 }
 
