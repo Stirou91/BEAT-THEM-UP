@@ -136,16 +136,16 @@ public class PlayerSM : MonoBehaviour
         {
             case PlayerState.IDLE:
                 
-                animator.SetTrigger("SPECIAL");
-                if (shock.gameObject)
-                {
-                    shock.gameObject.SetActive(true);
-                }
-                else 
-                {
-                    shock.gameObject.SetActive(false);
-                    TransitionToState(PlayerState.IDLE);
-                }
+               // animator.SetTrigger("SPECIAL");
+               // if (shock.gameObject)
+               // {
+                   // shock.gameObject.SetActive(true);
+                //}
+               // else 
+               // {
+                  //  shock.gameObject.SetActive(false);
+                   // TransitionToState(PlayerState.IDLE);
+                //}
                
                 break;
             case PlayerState.WALK:
