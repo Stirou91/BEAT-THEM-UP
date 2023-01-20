@@ -206,6 +206,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ddaa87926ee1434abaa1dacf9974b09, type: 3}
   - {fileID: 8300000, guid: 13b5ecf258321c54e95973c9a160846d, type: 3}
   - {fileID: 8300000, guid: 80b50ec2e821346458c0f09973f87eb5, type: 3}
+  - {fileID: 8300000, guid: 608ebf73e8fc9c64296e3db76106330d, type: 3}
   audioSource: {fileID: 545572294}
 --- !u!82 &545572294 stripped
 AudioSource:
@@ -698,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: -----PLAY-LISTE_TRACKS
       objectReference: {fileID: 0}
+    - target: {fileID: 4486486466880420717, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5796891608563866840, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -708,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8823311804730258726, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
