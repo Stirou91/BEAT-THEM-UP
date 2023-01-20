@@ -15,9 +15,10 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        healthSlider = slider.GetComponent<Slider>();
+
         if (healthSlider != null)
         {
-            healthSlider = slider.GetComponent<Slider>();
             healthSlider.maxValue = currentHealth;
             healthSlider.value = maxHealth;
         }
@@ -28,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
 
         currentHealth -= damageAmount;
-        if(healthSlider != null)
+        if (healthSlider != null)
         {
             healthSlider.value = currentHealth;
 
@@ -38,7 +39,8 @@ public class PlayerHealth : MonoBehaviour
         {
             // PLAYER DEAD
             GetComponent<PlayerSM>().PlayerDead();
-        } else
+        }
+        else
         {
             GetComponent<PlayerSM>().PlayerHurt();
         }

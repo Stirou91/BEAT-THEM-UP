@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject hitbox;
     [SerializeField] GameObject graphics;
     [SerializeField] public float currentHealth;
-    [SerializeField] private float deathTimer = 3f;
+    [SerializeField] private float deathTimer = 0.5f;
     [SerializeField] GameObject diskPrefab;
 
 
@@ -27,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
     Vector2 enemydir;
     bool right = true;
     bool death = true;
+    bool isHurt;
     // Start is called before the first frame update
 
     public enum EnemeState
@@ -34,6 +35,7 @@ public class EnemyMovement : MonoBehaviour
         IDLE,
         WALK,
         ATTACK,
+        HURT,
         DEATH
 
     }
@@ -102,8 +104,19 @@ public class EnemyMovement : MonoBehaviour
                 hitbox.SetActive(true);
                 animator.SetTrigger("ATTACK");
                 break;
+            case EnemeState.HURT:
+                animator.SetTrigger("HURT");
+                rb2D.velocity = Vector2.zero;
+                if (!isHurt)
+                {
+                    isHurt = true;
+                }
+
+                break;
             case EnemeState.DEATH:
                 animator.SetTrigger("DEATH");
+                rb2D.velocity = Vector2.zero;
+                cc2D.enabled = false;
                 break;
             default:
                 break;
@@ -155,6 +168,7 @@ public class EnemyMovement : MonoBehaviour
 
 
                 break;
+
             case EnemeState.ATTACK:
                 attackTimer += Time.deltaTime;
                 if (attackTimer >= attackDuration)
@@ -162,6 +176,9 @@ public class EnemyMovement : MonoBehaviour
                     // J'AI FINI D'ATTAQUER
                     TransitionToState(EnemeState.IDLE);
                 }
+                break;
+            case EnemeState.HURT:
+                
                 break;
             case EnemeState.DEATH:
                 
@@ -192,6 +209,9 @@ public class EnemyMovement : MonoBehaviour
             case EnemeState.ATTACK:
                 hitbox.SetActive(false);
                 animator.SetTrigger("ATTACK");
+                break;
+            case EnemeState.HURT:
+                animator.SetTrigger("HURT");
                 break;
             case EnemeState.DEATH:
                 animator.SetTrigger("DEATH");
