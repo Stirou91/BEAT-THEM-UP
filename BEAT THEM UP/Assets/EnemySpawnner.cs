@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnneSpawnner : MonoBehaviour
+public class EnemySpawnner : MonoBehaviour
 {
 
     //Prefab pour faciliter travail d'équipe
@@ -20,7 +20,7 @@ public class EnneSpawnner : MonoBehaviour
     {
         // Creer un ennemi
         /* GameObject go = Instantiate(enemyPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
-          go.GetComponent<EnemyMovementRB>().player = this.player;*/
+          go.GetComponent<EnemyMovement>().player = this.player;*/
     }
 
     // Update is called once per frame
