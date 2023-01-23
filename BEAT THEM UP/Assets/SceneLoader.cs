@@ -7,11 +7,11 @@ using TMPro;
 
 public class SceneLoader : MonoBehaviour
 {
-    
 
-    public GameObject loadingscreen;
-    public GameObject spaceText;
-    public Slider slider;
+
+    [SerializeField] GameObject loadingscreen;
+    [SerializeField] GameObject spaceText;
+    [SerializeField] Slider slider;
     [SerializeField] TextMeshProUGUI progressText;
 
 
