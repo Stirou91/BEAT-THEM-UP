@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 8217833258789834602}
   - component: {fileID: 8217833258789834600}
   - component: {fileID: 8217833258789834601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GRAPHICS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 8217833258829432921}
   - component: {fileID: 7339337159956437514}
   - component: {fileID: 7339337158869107818}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ENEMY_1_PREFAB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,8 +307,8 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 1
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.25}
   m_Size: {x: 0.4, y: 0.74}
@@ -335,7 +335,7 @@ MonoBehaviour:
   graphics: {fileID: 8217833258789834603}
   currentHealth: 0
   deathTimer: 3
-  disqPrefab: {fileID: 0}
+  diskPrefab: {fileID: 1197732727291713730, guid: 28f56d4edf2ac8246baa32f4e48ef8c5, type: 3}
 --- !u!114 &7339337158869107818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,5 +348,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc593b7377a603458c22f6c5efef543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 0
+  maxHealth: 100
+  currentHealth: 100
