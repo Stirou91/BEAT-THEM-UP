@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CANS_RED
       objectReference: {fileID: 0}
-    - target: {fileID: 8112544606135565019, guid: 65942d352d96de44a8924901b0bd6b9a, type: 3}
-      propertyPath: m_TagString
-      value: CanUP
-      objectReference: {fileID: 0}
     - target: {fileID: 8112544606135565022, guid: 65942d352d96de44a8924901b0bd6b9a, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -182,37 +178,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6228252195676312227, guid: 65942d352d96de44a8924901b0bd6b9a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65942d352d96de44a8924901b0bd6b9a, type: 3}
---- !u!1 &525423976 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4486486466880420717, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-  m_PrefabInstance: {fileID: 735649761140884673}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &525423978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525423976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 449346df0ee895742ae3216b1766de14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Playlist:
-  - {fileID: 8300000, guid: 4ddaa87926ee1434abaa1dacf9974b09, type: 3}
-  - {fileID: 8300000, guid: 13b5ecf258321c54e95973c9a160846d, type: 3}
-  - {fileID: 8300000, guid: 80b50ec2e821346458c0f09973f87eb5, type: 3}
-  - {fileID: 8300000, guid: 608ebf73e8fc9c64296e3db76106330d, type: 3}
-  audioSource: {fileID: 545572294}
---- !u!82 &545572294 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 170273166911748067, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-  m_PrefabInstance: {fileID: 735649761140884673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721252769 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8217833258829432922, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
@@ -647,10 +614,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 193456116892591040, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1110170076021722407, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -698,22 +661,6 @@ PrefabInstance:
     - target: {fileID: 4486486466880420717, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
       propertyPath: m_Name
       value: -----PLAY-LISTE_TRACKS
-      objectReference: {fileID: 0}
-    - target: {fileID: 4486486466880420717, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5796891608563866840, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6813009220078886959, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8823311804730258726, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd721152bfb66a94ca3bb9902c6c2877, type: 3}
