@@ -170,7 +170,7 @@ public class PlayerSM : MonoBehaviour
             case PlayerState.ATTACK:
                 rb2D.velocity = Vector2.zero;
                 animator.SetTrigger("ATTACK");
-                if(!audioSource.isPlaying)
+                if(audioSource != null && !audioSource.isPlaying)
                 {
                     audioSource.Play();
 
