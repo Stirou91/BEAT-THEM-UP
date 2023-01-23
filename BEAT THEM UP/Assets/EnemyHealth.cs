@@ -21,5 +21,10 @@ public class EnemyHealth : MonoBehaviour
         {
             GetComponent<EnemyMovement>().EnemyDead();
         }
+
+        else
+        {
+            GetComponent<EnemyMovement>().EnemyHurt();
+        }
     }
 }

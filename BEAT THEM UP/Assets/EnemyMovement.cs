@@ -259,4 +259,30 @@ public class EnemyMovement : MonoBehaviour
     {
         TransitionToState(EnemeState.DEATH);
     }
+    public void EnemyHurt()
+    {
+        TransitionToState(EnemeState.HURT);
+    }
+
+    IEnumerator HurtColor()
+    {
+        float t = 0;
+        float duration = .3f;
+
+        //Color startColor = sr.color;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+
+            //sr.color = Color.Lerp(startColor, Color.red, hurtCurve.Evaluate(t / duration));
+
+            yield return null;
+        }
+
+        isHurt = false;
+
+        TransitionToState(EnemeState.IDLE);
+
+    }
 }

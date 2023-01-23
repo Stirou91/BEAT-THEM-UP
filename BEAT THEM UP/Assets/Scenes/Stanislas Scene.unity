@@ -196,18 +196,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7339337158869107818, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339337158869107818, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
-      propertyPath: currentHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339337159956437514, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
-      propertyPath: diskPrefab
-      value: 
-      objectReference: {fileID: 1197732727291713730, guid: 28f56d4edf2ac8246baa32f4e48ef8c5, type: 3}
     - target: {fileID: 8217833258829432871, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -250,14 +238,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8217833258829432871, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8217833258829432921, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8217833258829432921, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
-      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8217833258829432922, guid: 22af6433bd8817345aeee597cb596ce0, type: 3}
@@ -428,10 +408,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER_1 Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 2102931235459068522, guid: f22a66285c50be045a928705326999c2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2102931235459068523, guid: f22a66285c50be045a928705326999c2, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -590,6 +566,10 @@ PrefabInstance:
     - target: {fileID: 682069404348482090, guid: f55a33465c2e9f34e844f10e6408cd44, type: 3}
       propertyPath: m_Name
       value: ENEMY SPAWNER
+      objectReference: {fileID: 0}
+    - target: {fileID: 682069404348482090, guid: f55a33465c2e9f34e844f10e6408cd44, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 682069404348482091, guid: f55a33465c2e9f34e844f10e6408cd44, type: 3}
       propertyPath: player
@@ -846,6 +826,10 @@ PrefabInstance:
     - target: {fileID: 5058722221828679176, guid: 92780cb1f8d56b24688c808a25e703cd, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058722221828679176, guid: 92780cb1f8d56b24688c808a25e703cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5058722221828679177, guid: 92780cb1f8d56b24688c808a25e703cd, type: 3}
       propertyPath: m_Enabled
