@@ -280,6 +280,14 @@ PrefabInstance:
       propertyPath: ShapeModule.alignToDirection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1687557432063068884, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687557432063068884, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2292335611861759148, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -295,6 +303,10 @@ PrefabInstance:
     - target: {fileID: 3154734442726516509, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4008806040071554817, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5534672185295633184, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
       propertyPath: shock
@@ -436,6 +448,22 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5847925931259048507, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847925931259048510, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7947184038267072709, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665292821837022675, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72860004c5a571440ad961d5fcf73f28, type: 3}
 --- !u!4 &2102931235300210062 stripped
@@ -497,6 +525,10 @@ PrefabInstance:
     - target: {fileID: 2765398824849909370, guid: 0aeaf448fffe8c54b8f1f079e50a012c, type: 3}
       propertyPath: m_Name
       value: Particle_HIT
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765398824849909370, guid: 0aeaf448fffe8c54b8f1f079e50a012c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aeaf448fffe8c54b8f1f079e50a012c, type: 3}

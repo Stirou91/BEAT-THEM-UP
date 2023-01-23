@@ -28,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
     bool right = true;
     bool death = true;
     bool isHurt;
+    internal GameObject player;
+
     // Start is called before the first frame update
 
     public enum EnemeState
