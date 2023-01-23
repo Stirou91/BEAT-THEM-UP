@@ -157,7 +157,7 @@ public class PlayerSM : MonoBehaviour
                 animator.SetTrigger("JUMP");
                 jump.gameObject.SetActive(true);
                 dustLand.gameObject.SetActive(false);
-                if (!audioSource.isPlaying)
+                if (audioSource != null &&!audioSource.isPlaying)
                 {
                     audioSource.Play();
 
